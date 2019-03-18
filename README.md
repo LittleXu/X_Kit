@@ -2,7 +2,7 @@
 ### 使用方法
 
 # UIView
-
+```
 UIView *view = [UIView new];
 view
 .x_frame([NSValue valueWithCGRect:CGRectMake(0, 0, 100, 100)])
@@ -12,8 +12,9 @@ view
 .x_borderColor([UIColor whiteColor])
 .x_borderWidth(@2);
 [self.view addSubview:view];
-
+```
 # UILabel
+```
 UILabel *label1 = [UILabel new];
 label1
 .x_text(@"您好呀!")
@@ -24,8 +25,9 @@ label1
 .x_clipToBounds(@(YES))
 .x_backgroundColor([UIColor orangeColor]);
 [self.view addSubview:label1];
-
+```
 # UIButton
+```
 UIButton *button = [UIButton new];
 button
 .x_state(@(x_normal))
@@ -39,8 +41,9 @@ button
     NSLog(@"哈哈哈哈");
 });
 [self.view addSubview:button];
-
+```
 # UITextField
+```
 UITextField *field = [UITextField new];
 field
 .x_placeholder(@"placeholder")
@@ -58,8 +61,9 @@ field
     return YES;
 });
 [self.view addSubview:field];
-
+```
 # UITableView
+```
 UITableView *table = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStyleGrouped];
 table
 .x_rowHeight(@60)
@@ -97,4 +101,4 @@ table
 })
 ;
 [self.view addSubview:table];
-
+```
