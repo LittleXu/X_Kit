@@ -7,14 +7,16 @@
 //
 
 #import "UIButton+X.h"
-
+#import "XKit.h"
 @interface UIButton ()
 
 @property (nonatomic, assign) x_state _state;
+@property (nonatomic, copy) void(^_action)(UIButton*);
 
 @end
 
 static void *UIBUTTON_STATE_KEY = &UIBUTTON_STATE_KEY;
+static void *UIBUTTON_ACTION_KEY = &UIBUTTON_ACTION_KEY;
 
 @implementation UIButton (X)
 
@@ -114,6 +116,15 @@ static void *UIBUTTON_STATE_KEY = &UIBUTTON_STATE_KEY;
     return block;
 }
 
+- (xb_Block0)x_action {
+    xb_Block0 block = ^UIButton* (void(^action)(UIButton *sender)) {
+        self._action = action;
+        [self addTarget:self action:@selector(action:) forControlEvents:UIControlEventTouchUpInside];
+        return self;
+    };
+    return block;
+}
+
 
 - (void)set_state:(x_state)_state {
     objc_setAssociatedObject(self, &UIBUTTON_STATE_KEY, @(_state), OBJC_ASSOCIATION_ASSIGN);
@@ -123,5 +134,18 @@ static void *UIBUTTON_STATE_KEY = &UIBUTTON_STATE_KEY;
     return [objc_getAssociatedObject(self, &UIBUTTON_STATE_KEY) integerValue];
 }
 
+- (void)set_action:(void (^)(UIButton *))action {
+    objc_setAssociatedObject(self, &UIBUTTON_ACTION_KEY, action, OBJC_ASSOCIATION_COPY);
+}
+
+- (void (^)(UIButton *))_action {
+    return objc_getAssociatedObject(self, &UIBUTTON_ACTION_KEY);
+}
+
+- (void)action:(id)sender {
+    if (self._action) {
+        self._action(self);
+    }
+}
 
 @end

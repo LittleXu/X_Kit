@@ -7,7 +7,7 @@
 //
 
 #import "UILabel+X.h"
-
+#import "XKit.h"
 @implementation UILabel (X)
 
 - (xl_Block)x_text

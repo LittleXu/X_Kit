@@ -11,6 +11,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef UIButton* (^xb_Block)(id);
+typedef UIButton* (^xb_Block0)(void(^)(UIButton*));
 
 typedef NS_ENUM(NSUInteger, x_state) {
     x_normal = UIControlStateNormal,
@@ -40,6 +41,8 @@ typedef NS_ENUM(NSUInteger, x_state) {
 @property (nonatomic, copy, readonly) xb_Block x_attributeTitle;
 
 @property (nonatomic, copy, readonly) xb_Block x_font;
+
+@property (nonatomic, copy, readonly) xb_Block0 x_action;
 @end
 
 NS_ASSUME_NONNULL_END
